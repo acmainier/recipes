@@ -1,35 +1,9 @@
 import React from "react";
 import "./recipe.css";
+import Ingredients from "./ingredients";
+import Method from "./method";
 
-function Ingredients({ ingredients }) {
-  return (
-    <div>
-      <h2>Ingredients</h2>
-      <ul>
-        {ingredients.map((ingredient) => (
-          <li key={ingredient.id}>{ingredient.name}</li>
-        ))}
-      </ul>
-    </div>
-  );
-}
 
-function Method({ steps }) {
-  return (
-    <div>
-      <h2>Method</h2>
-      <div className="container my-grid">
-        <ol>
-          {steps.map((step, i) => (
-            <li key={step.id} className="my-card">
-              {step.name}
-            </li>
-          ))}
-        </ol>
-      </div>
-    </div>
-  );
-}
 
 export default function Recipe({ title, ingredients, steps }) {
   return (
