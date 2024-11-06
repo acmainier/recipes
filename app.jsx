@@ -3,7 +3,8 @@ import Recipe from "./Recipe";
 import data from "./recipes.json";
 
 export default function App() {
-  const { title, ingredients, steps } = data;
+  const recipe = data[0];
+  const { title, ingredients, steps } = recipe;
   console.log(title, ingredients, steps)
   return <Recipe title={title} ingredients={ingredients} steps={steps} />;
 }
