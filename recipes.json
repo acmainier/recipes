@@ -1,29 +1,61 @@
-[
-  {
+{
     "title": "Ultimate spaghetti carbonara recipe",
     "ingredients": [
-      "100g pancetta",
-      "50g pecorino cheese",
-      "50g parmesan",
-      "3 large eggs",
-      "350g spaghetti",
-      "2 plump garlic cloves, peeled and left whole",
-      "50g unsalted butter",
-      "sea salt and freshly ground black pepper"
+        { "id": 100, "name": "100g pancetta" },
+        { "id": 200, "name": "50g pecorino cheese" },
+        { "id": 300, "name": "50g parmesan" },
+        { "id": 400, "name": "3 large eggs" },
+        { "id": 500, "name": "350g spaghetti" },
+        { "id": 600, "name": "2 plump garlic cloves, peeled and left whole" },
+        { "id": 700, "name": "50g unsalted butter" },
+        { "id": 800, "name": "sea salt and freshly ground black pepper" }
     ],
     "steps": [
-      "Mettez une grande casserole d’eau à ébullition.",
-      "Hachez finement 100 g de pancetta en ayant préalablement retiré la croûte. Râpez finement 50 g de pecorino et 50 g de parmesan et mélangez-les.",
-      "Battez les 3 gros œufs dans un bol moyen et assaisonnez avec un peu de poivre noir fraîchement râpé. Mettez tout de côté.",
-      "Ajoutez 1 cuillère à café de sel à l'eau bouillante, ajoutez 350 g de spaghettis et lorsque l'eau revient à ébullition, faites cuire à ébullition constante, à couvert, pendant 10 minutes ou jusqu'à ce qu'ils soient al dente (juste cuits).",
-      "Écrasez 2 gousses d'ail dodues, pelées, avec la lame d'un couteau, histoire de les meurtrir.",
-      "Pendant que les spaghettis cuisent, faites revenir la pancetta avec l'ail. Versez 50 g de beurre doux dans une grande poêle ou un wok et, dès que le beurre est fondu, versez-y la pancetta et l'ail.",
-      "Laisser cuire à feu moyen environ 5 minutes en remuant souvent jusqu'à ce que la pancetta soit dorée et croustillante. L'ail a maintenant conféré sa saveur, alors retirez-le avec une écumoire et jetez-le.",
-      "Gardez le feu doux sous le bacon. Lorsque les pâtes sont prêtes, sortez-les de l'eau avec une fourchette à pâtes ou une pince et mettez-les dans la poêle avec la pancetta. Ne vous inquiétez pas si un peu d'eau tombe également dans la casserole (vous souhaitez que cela se produise) et ne jetez pas encore l'eau des pâtes.",
-      "Mélangez la majeure partie du fromage avec les œufs, en gardant une petite poignée pour saupoudrer plus tard.",
-      "Retirez la poêle de spaghettis et de pancetta du feu. Maintenant, versez rapidement les œufs et le fromage. À l'aide des pinces ou d'une longue fourchette, soulevez les spaghettis pour qu'ils se mélangent facilement au mélange d'œufs, qui épaissit mais ne se brouille pas, et que le tout soit enrobé.",
-      "Ajoutez de l'eau de cuisson supplémentaire pour les pâtes pour les garder en sauce (plusieurs cuillères à soupe devraient suffire). Vous ne voulez pas qu'il soit mouillé, juste humide. Assaisonner avec un peu de sel, si nécessaire.",
-      "Utilisez une fourchette à long bec pour tordre les pâtes dans l'assiette ou le bol de service. Servir immédiatement avec un peu de fromage restant et une râpe de poivre noir. Si le plat devient un peu sec avant de servir, ajoutez un peu d'eau chaude pour les pâtes et le goût brillant sera ravivé."
+        { "id": 100, "name": "Put a large saucepan of water on to boil." },
+        {
+        "id": 200,
+        "name": "Finely chop the 100g pancetta, having first removed any rind. Finely grate 50g pecorino cheese and 50g parmesan and mix them together."
+        },
+        {
+        "id": 300,
+        "name": "Beat the 3 large eggs in a medium bowl and season with a little freshly grated black pepper. Set everything aside."
+        },
+        {
+        "id": 400,
+        "name": "Add 1 tsp salt to the boiling water, add 350g spaghetti and when the water comes back to the boil, cook at a constant simmer, covered, for 10 minutes or until al dente (just cooked)."
+        },
+        {
+        "id": 500,
+        "name": "Squash 2 peeled plump garlic cloves with the blade of a knife, just to bruise it."
+        },
+        {
+        "id": 600,
+        "name": "While the spaghetti is cooking, fry the pancetta with the garlic. Drop 50g unsalted butter into a large frying pan or wok and, as soon as the butter has melted, tip in the pancetta and garlic."
+        },
+        {
+        "id": 700,
+        "name": "Leave to cook on a medium heat for about 5 minutes, stirring often, until the pancetta is golden and crisp. The garlic has now imparted its flavour, so take it out with a slotted spoon and discard."
+        },
+        {
+        "id": 800,
+        "name": "Keep the heat under the pancetta on low. When the pasta is ready, lift it from the water with a pasta fork or tongs and put it in the frying pan with the pancetta. Don’t worry if a little water drops in the pan as well (you want this to happen) and don’t throw the pasta water away yet."
+        },
+        {
+        "id": 900,
+        "name": "Mix most of the cheese in with the eggs, keeping a small handful back for sprinkling over later."
+        },
+        {
+        "id": 1000,
+        "name": "Take the pan of spaghetti and pancetta off the heat. Now quickly pour in the eggs and cheese. Using the tongs or a long fork, lift up the spaghetti so it mixes easily with the egg mixture, which thickens but doesn’t scramble, and everything is coated."
+        },
+        {
+        "id": 1100,
+        "name": "Add extra pasta cooking water to keep it saucy (several tablespoons should do it). You don’t want it wet, just moist. Season with a little salt, if needed."
+        },
+        {
+        "id": 1200,
+        "name": "Use a long-pronged fork to twist the pasta on to the serving plate or bowl. Serve immediately with a little sprinkling of the remaining cheese and a grating of black pepper. If the dish does get a little dry before serving, splash in some more hot pasta water and the glossy sauciness will be revived."
+        }
     ]
-  }
-]
+}
+

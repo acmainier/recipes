@@ -1,4 +1,5 @@
 import React from "react";
+import "./recipe.css";
 
 export default function Recipe({ title, ingredients, steps }) {
   return (
@@ -9,16 +10,20 @@ export default function Recipe({ title, ingredients, steps }) {
           <h2>Ingredients</h2>
           <ul>
             {ingredients.map((ingredient) => (
-              <li key={ingredient}>{ingredient}</li>
+              //  ingredient  = { "id": 100, "name": "100g pancetta" },
+              <li key={ingredient.id}>{ingredient.name}</li>
             ))}
           </ul>
           <h2>Method</h2>
-          {steps.map((step, i) => (
-            <div key={step}>
-              <h3>Step {i + 1}</h3>
-              <p>{step}</p>
+          <div className="container my-grid">
+            <div >
+              <ol>
+                {steps.map((step, i) => (
+                  <li key={step.id} className="my-card"> {step.name}</li>
+                ))}
+              </ol>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

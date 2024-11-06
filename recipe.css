@@ -1,0 +1,21 @@
+body {
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.my-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3em;
+}
+
+.my-card {
+    border: 1px solid rgba(0, 0, 255, .8);
+   /* border-radius: 10px;
+    padding: 10px;
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 255, .2); */
+}
