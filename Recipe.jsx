@@ -3,8 +3,6 @@ import "./recipe.css";
 import Ingredients from "./ingredients";
 import Method from "./method";
 
-
-
 export default function Recipe({ title, ingredients, steps }) {
   return (
     <div>
