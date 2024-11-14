@@ -96,5 +96,44 @@
         "name": "Transfer to a rack to cool – or eat slightly warm. Will keep in an airtight container for three days."
       }
     ]
+  },
+
+  {
+    "index": 2,
+    "title": "Sweet potato & lentil soup",
+    "ingredients": [
+      { "id": 100, "name": "2 tsp medium curry powder" },
+      { "id": 200, "name": "3 tbsp olive oil" },
+      { "id": 300, "name": "2 onions, grated" },
+      { "id": 400, "name": "1 eating apple, peeled, cored and grated" },
+      { "id": 500, "name": "3 garlic cloves, crushed" },
+      { "id": 600, "name": "20g pack coriander, stalks chopped" },
+      { "id": 700, "name": "thumb-size piece fresh root ginger, grated" },
+      { "id": 800, "name": "800g sweet potatoes" },
+      { "id": 900, "name": "1.2l low-sodium vegetable stock" },
+      { "id": 1000, "name": "100g red lentils" },
+      { "id": 1100, "name": "300ml milk" },
+      { "id": 1200, "name": "juice 1 lime" }
+    ],
+
+    "steps": [
+      { "id": 100, "name": "Put the curry powder into a large saucepan, then toast over a medium heat for 2 mins." },
+      {
+        "id": 200,
+        "name": " Add the olive oil, stirring as the spice sizzles in the pan. Tip in the onions, apple, garlic, coriander stalks and ginger, season, then gently cook for 5 mins, stirring every so often."
+      },
+      {
+        "id": 300,
+        "name": "Meanwhile, peel, then grate the sweet potatoes. Tip into the pan with the stock, lentils, milk and seasoning, then simmer, covered, for 20 mins."
+      },
+      {
+        "id": 400,
+        "name": "Blend until smooth using a stick blender."
+      },
+      {
+        "id": 500,
+        "name": "Stir in the lime juice, check the seasoning and serve, topped with roughly-chopped coriander leaves."
+      }
+    ]
   }
 ]

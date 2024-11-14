@@ -8,9 +8,11 @@ export default function App() {
   const { title, ingredients, steps } = recipe;
   return (
     <div>
-      <div>
+      <div className="d-grid gap-3 d-md-block">
         {data.map((item) => (
           <button
+            type="button"
+            className="btn btn-secondary mx-auto"
             key={item.index}
             onClick={() => {
               setRecipeId(item.index);
