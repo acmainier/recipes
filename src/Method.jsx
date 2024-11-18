@@ -4,7 +4,7 @@ export default function Method({ steps }) {
       <h2>Method</h2>
       <div className="container my-grid">
         <ol>
-          {steps.map((step, i) => (
+          {steps.map((step) => (
             <li key={step.id} className="my-card">
               {step.name}
             </li>
