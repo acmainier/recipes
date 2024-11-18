@@ -1,7 +1,6 @@
-import React from "react";
-import "./recipe.css";
-import Ingredients from "./ingredients";
-import Method from "./method";
+import "./Recipe.css";
+import Ingredients from "./Ingredients";
+import Method from "./Method";
 
 export default function Recipe({ title, ingredients, steps }) {
   return (

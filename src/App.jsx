@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Recipe from "./Recipe";
-import Button from "./button";
+import Button from "./Button";
 import data from "./recipes.json";
 
 function Nav({ data, onRecipeIdChange }) {
