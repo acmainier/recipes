@@ -8,7 +8,7 @@ export default function App() {
   const [recipeId, setRecipeId] = useState(0);
   console.log({ recipeId });
   const recipe = data[recipeId];
-  const {title, ingredients, steps } = recipe;
+  const { title, ingredients, steps } = recipe;
 
   return (
     <div>

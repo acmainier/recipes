@@ -1,8 +1,12 @@
 import Button from "./Button";
+import Random from "./Random";
 
 export default function Nav({ data, onRecipeIdChange }) {
+  function handleRandomRecipeId() {
+    onRecipeIdChange(Math.floor(Math.random() * data.length));
+  }
   return (
-    <div>
+    <div className="d-inline-flex gap-1">
       {data.map((item) => {
         function handleRecipeId() {
           onRecipeIdChange(item.index);
@@ -16,6 +20,7 @@ export default function Nav({ data, onRecipeIdChange }) {
           />
         );
       })}
+      <Random handleRandomRecipeId={handleRandomRecipeId} />
     </div>
   );
 }
