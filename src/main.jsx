@@ -19,6 +19,10 @@ const router = createBrowserRouter([
         loader: recipeLoader,
         element: <RecipePage />,
       },
+      {
+        path: "/recipes/newRecipe",
+        element: <div>New recipe form here soon!</div>,
+      },
     ],
   },
 ]);
