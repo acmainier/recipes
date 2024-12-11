@@ -1,32 +1,28 @@
+import { Outlet, Link, Form, useLoaderData } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { getAllRecipes } from "./recipes-api";
 
-import { Outlet, Link } from "react-router-dom";
-import data from "./recipes.json";
+export function loader() {
+  return { recipes: getAllRecipes() };
+}
 
 export default function Root() {
-    //const randomRecipeId = (Math.floor(Math.random() * data.length));
-     return (
+  const { recipes } = useLoaderData();
+  let navigate = useNavigate();
+  return (
     <>
       <div id="sidebar">
         <h1>My recipes</h1>
-        {/* <div>
-          <form id="search-form" role="search">
-            <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
-            />
-            <div id="search-spinner" aria-hidden hidden={true} />
-            <div className="sr-only" aria-live="polite"></div>
-          </form>
-          <form method="post">
-            <button type="submit">New</button>
-          </form>
-        </div> */}
+        {
+          <div>
+            <Form method="post">
+              <button type="submit">New</button>
+            </Form>
+          </div>
+        }
         <nav>
           <ul>
-            {data.map((item) => {
+            {recipes.map((item) => {
               return (
                 <li key={item.index}>
                   <Link to={`recipes/` + item.index}>{item.title}</Link>
@@ -34,7 +30,15 @@ export default function Root() {
               );
             })}
           </ul>
-          <Link to={`recipes/` + (Math.floor(Math.random() * data.length))} reloadDocument>Random recipe?</Link>
+
+          <button
+            type="button"
+            onClick={() => {
+              navigate(`recipes/` + Math.floor(Math.random() * recipes.length));
+            }}
+          >
+            random recipe?
+          </button>
         </nav>
       </div>
       <div id="detail">

@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
 import Recipe from "./Recipe";
-import data from "./recipes.json";
+import { getRecipe } from "./recipes-api";
 
 export function loader({ params }) {
-  const recipe = data[params.recipeId];
+  const recipe = getRecipe(params.recipeId);
   return { recipe };
 }
 
@@ -15,5 +15,5 @@ export default function RecipePage() {
       ingredients={recipe.ingredients}
       steps={recipe.steps}
     />
-);
+  );
 }
