@@ -4,7 +4,7 @@ import Root, { loader as rootLoader } from "./Root";
 import ErrorPage from "./error-page";
 
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
-
+import NewRecipe from "./newRecipe";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/recipes/newRecipe",
-        element: <div>New recipe form here soon!</div>,
+        element: <NewRecipe />,
       },
     ],
   },

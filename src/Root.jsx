@@ -1,4 +1,4 @@
-import { Outlet, Link, Form, useLoaderData } from "react-router-dom";
+import { Outlet, Link, useLoaderData } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { getAllRecipes } from "./recipes-api";
 
@@ -15,9 +15,25 @@ export default function Root() {
         <h1>My recipes</h1>
         {
           <div>
-            <Form method="post">
-              <button type="submit">New</button>
-            </Form>
+            <button
+              type="button"
+              onClick={() => {
+                navigate(`recipes/newRecipe`);
+              }}
+            >
+              New
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                navigate(
+                  `recipes/` + Math.floor(Math.random() * recipes.length)
+                );
+              }}
+            >
+              Random recipe?
+            </button>
           </div>
         }
         <nav>
@@ -30,15 +46,6 @@ export default function Root() {
               );
             })}
           </ul>
-
-          <button
-            type="button"
-            onClick={() => {
-              navigate(`recipes/` + Math.floor(Math.random() * recipes.length));
-            }}
-          >
-            random recipe?
-          </button>
         </nav>
       </div>
       <div id="detail">
