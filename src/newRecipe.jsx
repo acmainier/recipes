@@ -37,7 +37,9 @@ export default function NewRecipe() {
   };
 
   const cancelRecipe = () => {
-document.getElementById("newRecipeForm").reset();
+    document.getElementById("newRecipeForm").reset();
+    setInputIngredients([{ name: "" }]);
+    setInputSteps([{ name: "" }]);
   };
 
   return (
@@ -79,7 +81,9 @@ document.getElementById("newRecipeForm").reset();
         })}
         <p>
           <button type="submit">Save it!</button>
-          <button type="button" onClick={cancelRecipe}>Start over</button>
+          <button type="button" onClick={cancelRecipe}>
+            Start over
+          </button>
         </p>
       </form>
     </div>
