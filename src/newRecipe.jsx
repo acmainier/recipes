@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useRevalidator } from "react-router-dom";
 import { createRecipe } from "./recipes-api";
 
 export default function NewRecipe() {
-  function display(formData) {
+  const [inputIngredients, setInputIngredients] = useState([{ name: "" }]);
+  const [inputSteps, setInputSteps] = useState([{ name: "" }]);
+  const revalidator = useRevalidator();
+
+  function addRecipe(formData) {
     const formName = formData.get("recipeName");
     const formIngredients = formData.getAll("recipeIngredient");
 
@@ -18,15 +23,26 @@ export default function NewRecipe() {
 
     console.log(formName, formIngredientsComplete, formStepsComplete);
     createRecipe(formName, formIngredientsComplete, formStepsComplete);
+    revalidator.revalidate();
   }
-  const [inputIngredients, setInputIngredients] = useState([{ name: "" }]);
+
   const addIngredient = () => {
     let newIngredient = { name: " " };
     setInputIngredients([...inputIngredients, newIngredient]);
   };
+
+  const addStep = () => {
+    let newStep = { name: " " };
+    setInputSteps([...inputSteps, newStep]);
+  };
+
+  const cancelRecipe = () => {
+document.getElementById("newRecipeForm").reset();
+  };
+
   return (
     <div>
-      <form action={display}>
+      <form id="newRecipeForm" action={addRecipe}>
         <label htmlFor="recipeName">Recipe name</label>
         <input type="text" name="recipeName" id="recipeName" /> <br />
         <label htmlFor="recipeIngredient">Ingredients</label>
@@ -46,10 +62,24 @@ export default function NewRecipe() {
           );
         })}
         <label htmlFor="recipeStep">Steps</label>
-        <input type="text" name="recipeStep" id="recipeStep" />
+        <button type="button" onClick={addStep}>
+          Add Step
+        </button>
+        {inputSteps.map((input, index) => {
+          return (
+            <div key={index}>
+              <input
+                type="text"
+                name="recipeStep"
+                id="recipeStep"
+                defaultValue={input.name}
+              />
+            </div>
+          );
+        })}
         <p>
           <button type="submit">Save it!</button>
-          <button type="button">start over</button>
+          <button type="button" onClick={cancelRecipe}>Start over</button>
         </p>
       </form>
     </div>

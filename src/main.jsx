@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Root, { loader as rootLoader } from "./Root";
+import Root, { loader as rootLoader, action as rootAction } from "./Root";
 import ErrorPage from "./error-page";
 
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     loader: rootLoader,
     element: <Root />,
     errorElement: <ErrorPage />,
+    action: rootAction,
     children: [
       {
         path: "/recipes/:recipeId",

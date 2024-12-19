@@ -1,9 +1,14 @@
-import { Outlet, Link, useLoaderData } from "react-router-dom";
+import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { getAllRecipes } from "./recipes-api";
+import { getAllRecipes, createRecipe } from "./recipes-api";
 
 export function loader() {
   return { recipes: getAllRecipes() };
+}
+
+export async function action() {
+  const recipe = await createRecipe();
+  return { recipe };
 }
 
 export default function Root() {
@@ -15,6 +20,7 @@ export default function Root() {
         <h1>My recipes</h1>
         {
           <div>
+            <Form method="post">
             <button
               type="button"
               onClick={() => {
@@ -23,7 +29,7 @@ export default function Root() {
             >
               New
             </button>
-
+            </Form>
             <button
               type="button"
               onClick={() => {
