@@ -27,16 +27,16 @@ label {
 
 button {
   padding: 5px;
-  background-color: #ec8a55;
+  background-color: #8a55ec;
   margin: 5px;
 }
 
 a {
-  color: #55ec8a;
+  color: #7146c1;
 }
 
 .my-card {
-  border: 1px solid #ec8a55;
+  border: 1px solid #7146c1;
   /* border-radius: 10px;
     padding: 10px;
     box-shadow: 2px 2px 20px 1px rgba(0, 0, 255, .2); */
