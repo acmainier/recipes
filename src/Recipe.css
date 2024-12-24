@@ -16,8 +16,27 @@ h2 {
   font-family: bradley hand, cursive;
 }
 
+div {
+  padding: 5px;
+}
+
+label {
+  color: #8a55ec;
+  padding: 5px;
+}
+
+button {
+  padding: 5px;
+  background-color: #ec8a55;
+  margin: 5px;
+}
+
+a {
+  color: #55ec8a;
+}
+
 .my-card {
-  border: 1px solid rgba(0, 0, 255, 0.8);
+  border: 1px solid #ec8a55;
   /* border-radius: 10px;
     padding: 10px;
     box-shadow: 2px 2px 20px 1px rgba(0, 0, 255, .2); */
