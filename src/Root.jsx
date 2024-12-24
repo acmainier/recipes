@@ -48,6 +48,7 @@ export default function Root() {
               return (
                 <li key={item.index}>
                   <Link to={`recipes/` + item.index}>{item.title}</Link>
+                  <button type="button" onClick={() => {navigate(`recipes/editRecipe/` + item.index);}}>Edit?</button>
                 </li>
               );
             })}

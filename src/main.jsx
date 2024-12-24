@@ -5,6 +5,7 @@ import ErrorPage from "./error-page";
 
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
 import NewRecipe from "./newRecipe";
+import EditRecipe, { loader as editRecipeLoader } from "./editRecipe";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
       {
         path: "/recipes/newRecipe",
         element: <NewRecipe />,
+      },
+      {
+        path: "/recipes/editRecipe/:recipeId",
+        loader: editRecipeLoader,
+        element: <EditRecipe />,
       },
     ],
   },
