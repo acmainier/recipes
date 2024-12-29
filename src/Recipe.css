@@ -21,8 +21,15 @@ div {
 }
 
 label {
+  width: 150px;
+  margin-right: 20px;
   color: #8a55ec;
-  padding: 5px;
+}
+
+input {
+  field-sizing: content;
+  min-width: 50px;
+  max-width: 350px;
 }
 
 button {
