@@ -27,3 +27,13 @@ export function createRecipe(title, ingredients, steps) {
 
   return newRecipe.index;
 }
+
+export function editRecipe(id, title, ingredients, steps) {
+data.forEach((recipe) => {
+  if (recipe.index === id) {
+recipe.title = title,
+recipe.ingredients = ingredients,
+recipe.steps = steps;
+  }
+});
+}
