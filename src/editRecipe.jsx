@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useLoaderData, useRevalidator } from "react-router-dom";
 import { getRecipe, editRecipe } from "./recipes-api";
 
@@ -10,15 +11,23 @@ export default function EditRecipe() {
   const { recipe } = useLoaderData();
   const ingredientsList = recipe.ingredients;
   const stepsList = recipe.steps;
+  const [extraIngredients, setExtraIngredients] = useState([{ name: "" }]);
   const revalidator = useRevalidator();
+
+  const addIngredient = () => {
+    let newIngredient = { name: " " };
+    setExtraIngredients([...extraIngredients, newIngredient]);
+  };
 
   function _editRecipe(formData) {
     const editedName = formData.get("recipeName");
     const editedIngredients = formData.getAll("recipeIngredient");
-    const editedIngredientsComplete = editedIngredients.map((ingredient, id) => ({
-      id: id,
-      name: ingredient,
-    }));
+    const editedIngredientsComplete = editedIngredients.map(
+      (ingredient, id) => ({
+        id: id,
+        name: ingredient,
+      })
+    );
     const editedSteps = formData.getAll("recipeStep");
     const editedStepsComplete = editedSteps.map((step, id) => ({
       id: (id + 1) * 100,
@@ -26,7 +35,12 @@ export default function EditRecipe() {
     }));
     console.log(editedName, editedIngredientsComplete, editedStepsComplete);
 
-    editRecipe(recipe.index, editedName, editedIngredientsComplete, editedStepsComplete);
+    editRecipe(
+      recipe.index,
+      editedName,
+      editedIngredientsComplete,
+      editedStepsComplete
+    );
     revalidator.revalidate();
   }
 
@@ -50,6 +64,21 @@ export default function EditRecipe() {
                 name="recipeIngredient"
                 id="recipeIngredient"
                 defaultValue={ingredient.name}
+              />
+            </div>
+          );
+        })}
+        <button type="button" onClick={addIngredient}>
+          Add Ingredient
+        </button>
+        {extraIngredients.map((input, index) => {
+          return (
+            <div key={index}>
+              <input
+                type="text"
+                name="recipeIngredient"
+                id="recipeIngredient"
+                defaultValue={input.name}
               />
             </div>
           );
