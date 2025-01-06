@@ -1,5 +1,5 @@
-import { useLoaderData } from "react-router-dom";
-import { getRecipe } from "./recipes-api";
+import { useLoaderData, useRevalidator } from "react-router-dom";
+import { getRecipe, editRecipe } from "./recipes-api";
 
 export function loader({ params }) {
   const recipe = getRecipe(params.recipeId);
@@ -10,9 +10,21 @@ export default function EditRecipe() {
   const { recipe } = useLoaderData();
   const ingredientsList = recipe.ingredients;
   const stepsList = recipe.steps;
+  const revalidator = useRevalidator();
+
+  function _editRecipe(formData) {
+    const editedName = formData.get("recipeName");
+    const editedIngredients = formData.getAll("recipeIngredient");
+    const editedSteps = formData.getAll("recipeStep");
+    console.log(editedName, editedIngredients, editedSteps);
+
+    editRecipe(recipe.index, editedName, editedIngredients, editedSteps);
+    revalidator.revalidate();
+  }
+
   return (
     <div key={recipe.index}>
-      <form id="editRecipeForm">
+      <form id="editRecipeForm" action={_editRecipe}>
         <label htmlFor="recipeName">Recipe name</label>
         <input
           type="text"
@@ -47,6 +59,7 @@ export default function EditRecipe() {
             </div>
           );
         })}
+        <button type="submit">Update it!</button>
       </form>
     </div>
   );
