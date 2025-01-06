@@ -10,7 +10,6 @@ export default function NewRecipe() {
   function addRecipe(formData) {
     const formName = formData.get("recipeName");
     const formIngredients = formData.getAll("recipeIngredient");
-
     const formIngredientsComplete = formIngredients.map((ingredient, id) => ({
       id: (id + 1) * 100,
       name: ingredient,

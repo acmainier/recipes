@@ -15,10 +15,18 @@ export default function EditRecipe() {
   function _editRecipe(formData) {
     const editedName = formData.get("recipeName");
     const editedIngredients = formData.getAll("recipeIngredient");
+    const editedIngredientsComplete = editedIngredients.map((ingredient, id) => ({
+      id: id,
+      name: ingredient,
+    }));
     const editedSteps = formData.getAll("recipeStep");
-    console.log(editedName, editedIngredients, editedSteps);
+    const editedStepsComplete = editedSteps.map((step, id) => ({
+      id: (id + 1) * 100,
+      name: step,
+    }));
+    console.log(editedName, editedIngredientsComplete, editedStepsComplete);
 
-    editRecipe(recipe.index, editedName, editedIngredients, editedSteps);
+    editRecipe(recipe.index, editedName, editedIngredientsComplete, editedStepsComplete);
     revalidator.revalidate();
   }
 
