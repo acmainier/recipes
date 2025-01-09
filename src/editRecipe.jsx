@@ -12,11 +12,16 @@ export default function EditRecipe() {
   const ingredientsList = recipe.ingredients;
   const stepsList = recipe.steps;
   const [extraIngredients, setExtraIngredients] = useState([{ name: "" }]);
+  const [extraSteps, setExtraSteps] = useState([{ name: "" }]);
   const revalidator = useRevalidator();
 
   const addIngredient = () => {
     let newIngredient = { name: " " };
     setExtraIngredients([...extraIngredients, newIngredient]);
+  };
+  const addStep = () => {
+    let newStep = { name: " " };
+    setExtraSteps([...extraSteps, newStep]);
   };
 
   function _editRecipe(formData) {
@@ -30,7 +35,7 @@ export default function EditRecipe() {
     );
     const editedSteps = formData.getAll("recipeStep");
     const editedStepsComplete = editedSteps.map((step, id) => ({
-      id: (id + 1) * 100,
+      id: id,
       name: step,
     }));
     console.log(editedName, editedIngredientsComplete, editedStepsComplete);
@@ -92,6 +97,21 @@ export default function EditRecipe() {
                 name="recipeStep"
                 id="recipeStep"
                 defaultValue={step.name}
+              />
+            </div>
+          );
+        })}
+        <button type="button" onClick={addStep}>
+          Add Step
+        </button>
+        {extraSteps.map((input, index) => {
+          return (
+            <div key={index}>
+              <input
+                type="text"
+                name="recipeStep"
+                id="recipeStep"
+                defaultValue={input.name}
               />
             </div>
           );
