@@ -16,28 +16,30 @@ export default function EditRecipe() {
   const revalidator = useRevalidator();
 
   const addIngredient = () => {
-    let newIngredient = { name: " " };
+    let newIngredient = { name: "" };
     setExtraIngredients([...extraIngredients, newIngredient]);
   };
   const addStep = () => {
-    let newStep = { name: " " };
+    let newStep = { name: "" };
     setExtraSteps([...extraSteps, newStep]);
   };
 
   function _editRecipe(formData) {
     const editedName = formData.get("recipeName");
     const editedIngredients = formData.getAll("recipeIngredient");
-    const editedIngredientsComplete = editedIngredients.map(
-      (ingredient, id) => ({
+    const editedIngredientsComplete = editedIngredients
+      .filter((ingredient) => ingredient.length >= 1)
+      .map((ingredient, id) => ({
         id: id,
         name: ingredient,
-      })
-    );
+      }));
     const editedSteps = formData.getAll("recipeStep");
-    const editedStepsComplete = editedSteps.map((step, id) => ({
-      id: id,
-      name: step,
-    }));
+    const editedStepsComplete = editedSteps
+      .filter((step) => step.length >= 1)
+      .map((step, id) => ({
+        id: id,
+        name: step,
+      }));
     console.log(editedName, editedIngredientsComplete, editedStepsComplete);
 
     editRecipe(
@@ -73,6 +75,7 @@ export default function EditRecipe() {
             </div>
           );
         })}
+        <p>Complete to add an ingredient</p>
         <button type="button" onClick={addIngredient}>
           Add Ingredient
         </button>

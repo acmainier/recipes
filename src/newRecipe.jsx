@@ -10,15 +10,19 @@ export default function NewRecipe() {
   function addRecipe(formData) {
     const formName = formData.get("recipeName");
     const formIngredients = formData.getAll("recipeIngredient");
-    const formIngredientsComplete = formIngredients.map((ingredient, id) => ({
-      id: (id + 1) * 100,
-      name: ingredient,
-    }));
+    const formIngredientsComplete = formIngredients
+      .filter((ingredient) => ingredient.length >= 1)
+      .map((ingredient, id) => ({
+        id: (id + 1) * 100,
+        name: ingredient,
+      }));
     const formSteps = formData.getAll("recipeStep");
-    const formStepsComplete = formSteps.map((step, id) => ({
-      id: (id + 1) * 100,
-      name: step,
-    }));
+    const formStepsComplete = formSteps
+      .filter((step) => step.length >= 1)
+      .map((step, id) => ({
+        id: (id + 1) * 100,
+        name: step,
+      }));
 
     console.log(formName, formIngredientsComplete, formStepsComplete);
     createRecipe(formName, formIngredientsComplete, formStepsComplete);
@@ -26,12 +30,12 @@ export default function NewRecipe() {
   }
 
   const addIngredient = () => {
-    let newIngredient = { name: " " };
+    let newIngredient = { name: "" };
     setInputIngredients([...inputIngredients, newIngredient]);
   };
 
   const addStep = () => {
-    let newStep = { name: " " };
+    let newStep = { name: "" };
     setInputSteps([...inputSteps, newStep]);
   };
 
