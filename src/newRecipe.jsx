@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { useRevalidator } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { createRecipe } from "./recipes-api";
 
 export default function NewRecipe() {
   const [inputIngredients, setInputIngredients] = useState([{ name: "" }]);
   const [inputSteps, setInputSteps] = useState([{ name: "" }]);
-  const revalidator = useRevalidator();
+
+  let navigate = useNavigate();
 
   function addRecipe(formData) {
     const formName = formData.get("recipeName");
@@ -25,8 +26,9 @@ export default function NewRecipe() {
       }));
 
     console.log(formName, formIngredientsComplete, formStepsComplete);
-    createRecipe(formName, formIngredientsComplete, formStepsComplete);
-    revalidator.revalidate();
+    const id = createRecipe(formName, formIngredientsComplete, formStepsComplete);
+    
+    navigate(`/recipes/` + id);
   }
 
   const addIngredient = () => {

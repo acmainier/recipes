@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useLoaderData, useRevalidator } from "react-router-dom";
+import { useNavigate } from "react-router";
+import { useLoaderData } from "react-router-dom";
 import { getRecipe, editRecipe } from "./recipes-api";
 
 export function loader({ params }) {
@@ -13,7 +14,7 @@ export default function EditRecipe() {
   const stepsList = recipe.steps;
   const [extraIngredients, setExtraIngredients] = useState([{ name: "" }]);
   const [extraSteps, setExtraSteps] = useState([{ name: "" }]);
-  const revalidator = useRevalidator();
+  let navigate = useNavigate();
 
   const addIngredient = () => {
     let newIngredient = { name: "" };
@@ -48,7 +49,8 @@ export default function EditRecipe() {
       editedIngredientsComplete,
       editedStepsComplete
     );
-    revalidator.revalidate();
+
+    navigate(`/recipes/` + recipe.index);
   }
 
   return (
