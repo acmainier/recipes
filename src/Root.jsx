@@ -16,10 +16,10 @@ export default function Root() {
   let navigate = useNavigate();
   return (
     <>
-      <div id="sidebar">
+      <div id="sidebar" className="top-menu">
         <h1>My recipes</h1>
         {
-          <div>
+          <div className="container">
             <Form method="post">
               <button
                 type="button"

@@ -22,20 +22,36 @@ div {
 
 label {
   width: 150px;
-  margin-right: 20px;
+  margin-top: 15px;
+  margin-left: 15px;
   color: #8a55ec;
+  font-size: 20px;
 }
 
 input {
   field-sizing: content;
   min-width: 50px;
   max-width: 350px;
+  margin-left: 5px;
 }
 
 button {
-  padding: 5px;
-  background-color: #8a55ec;
+  padding: 2px;
+  background-color: #DB96F4;
   margin: 5px;
+  
+}
+.container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.top-menu {
+  border-bottom: 1px dashed #8a55ec;
+}
+
+.submit-container {
+  border-top: 1px dashed #8a55ec;
 }
 
 a {

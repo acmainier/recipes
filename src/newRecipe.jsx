@@ -26,8 +26,12 @@ export default function NewRecipe() {
       }));
 
     console.log(formName, formIngredientsComplete, formStepsComplete);
-    const id = createRecipe(formName, formIngredientsComplete, formStepsComplete);
-    
+    const id = createRecipe(
+      formName,
+      formIngredientsComplete,
+      formStepsComplete
+    );
+
     navigate(`/recipes/` + id);
   }
 
@@ -53,43 +57,49 @@ export default function NewRecipe() {
         <label htmlFor="recipeName">Recipe name</label>
         <input type="text" name="recipeName" id="recipeName" /> <br />
         <label htmlFor="recipeIngredient">Ingredients</label>
-        <button type="button" onClick={addIngredient}>
-          Add Ingredient
-        </button>
-        {inputIngredients.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                type="text"
-                name="recipeIngredient"
-                id="recipeIngredient"
-                defaultValue={input.name}
-              />
-            </div>
-          );
-        })}
+        <div>
+          Complete to add an Ingredient:
+          {inputIngredients.map((input, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="text"
+                  name="recipeIngredient"
+                  id="recipeIngredient"
+                  defaultValue={input.name}
+                />
+              </div>
+            );
+          })}
+          <button type="button" onClick={addIngredient}>
+            Add another Ingredient
+          </button>
+        </div>
         <label htmlFor="recipeStep">Steps</label>
-        <button type="button" onClick={addStep}>
-          Add Step
-        </button>
-        {inputSteps.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                type="text"
-                name="recipeStep"
-                id="recipeStep"
-                defaultValue={input.name}
-              />
-            </div>
-          );
-        })}
-        <p>
+        <div>
+          Complete to add a step:
+          {inputSteps.map((input, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="text"
+                  name="recipeStep"
+                  id="recipeStep"
+                  defaultValue={input.name}
+                />
+              </div>
+            );
+          })}
+          <button type="button" onClick={addStep}>
+            Add another Step
+          </button>
+        </div>
+        <div className="submit-container">
           <button type="submit">Save it!</button>
           <button type="button" onClick={cancelRecipe}>
             Start over
           </button>
-        </p>
+        </div>
       </form>
     </div>
   );

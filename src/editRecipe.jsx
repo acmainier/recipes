@@ -77,22 +77,24 @@ export default function EditRecipe() {
             </div>
           );
         })}
-        <p>Complete to add an ingredient</p>
-        <button type="button" onClick={addIngredient}>
-          Add Ingredient
-        </button>
-        {extraIngredients.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                type="text"
-                name="recipeIngredient"
-                id="recipeIngredient"
-                defaultValue={input.name}
-              />
-            </div>
-          );
-        })}
+        <div>
+          Complete to add an ingredient:
+          {extraIngredients.map((input, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="text"
+                  name="recipeIngredient"
+                  id="recipeIngredient"
+                  defaultValue={input.name}
+                />
+              </div>
+            );
+          })}
+          <button type="button" onClick={addIngredient}>
+            Add another Ingredient
+          </button>
+        </div>
         <label htmlFor="recipeStep">Steps</label>
         {stepsList.map((step) => {
           return (
@@ -106,22 +108,27 @@ export default function EditRecipe() {
             </div>
           );
         })}
-        <button type="button" onClick={addStep}>
-          Add Step
-        </button>
-        {extraSteps.map((input, index) => {
-          return (
-            <div key={index}>
-              <input
-                type="text"
-                name="recipeStep"
-                id="recipeStep"
-                defaultValue={input.name}
-              />
-            </div>
-          );
-        })}
-        <button type="submit">Update it!</button>
+        <div>
+          Complete to add a step:
+          {extraSteps.map((input, index) => {
+            return (
+              <div key={index}>
+                <input
+                  type="text"
+                  name="recipeStep"
+                  id="recipeStep"
+                  defaultValue={input.name}
+                />
+              </div>
+            );
+          })}
+          <button type="button" onClick={addStep}>
+            Add another Step
+          </button>
+        </div>
+        <div className="submit-container">
+          <button type="submit">Update it!</button>
+        </div>
       </form>
     </div>
   );
