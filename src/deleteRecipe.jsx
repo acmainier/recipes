@@ -9,13 +9,21 @@ export function loader({ params }) {
 
 export default function DeleteRecipe() {
   const { recipe } = useLoaderData();
-deleteRecipeApi(recipe.index);
 
   return (
-    <Recipe
-      title={recipe.title}
-      ingredients={recipe.ingredients}
-      steps={recipe.steps}
-    />
+    <div>
+      <button
+        onClick={() => {
+          window.confirm("Are you sure?") && deleteRecipeApi(recipe.index);
+        }}
+      >
+        You want to delete this recipe?
+      </button>
+      <Recipe
+        title={recipe.title}
+        ingredients={recipe.ingredients}
+        steps={recipe.steps}
+      />
+    </div>
   );
 }
