@@ -56,6 +56,14 @@ export default function Root() {
                   >
                     Edit?
                   </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      navigate(`recipes/deleteRecipe/` + item.index);
+                    }}
+                  >
+                    Delete?
+                  </button>
                 </li>
               );
             })}

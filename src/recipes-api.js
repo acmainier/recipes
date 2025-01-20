@@ -36,5 +36,9 @@ export function editRecipe(id, title, ingredients, steps) {
         (recipe.steps = steps);
     }
   });
+}
 
+export function deleteRecipeApi(id) {
+  const deleteRecipeId = data.findIndex((recipe) => recipe.index === id);
+  console.log(deleteRecipeId);
 }

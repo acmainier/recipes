@@ -6,6 +6,7 @@ import ErrorPage from "./error-page";
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
 import NewRecipe from "./newRecipe";
 import EditRecipe, { loader as editRecipeLoader } from "./editRecipe";
+import DeleteRecipe, {loader as deleteRecipeLoader} from "./deleteRecipe";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
         path: "/recipes/editRecipe/:recipeId",
         loader: editRecipeLoader,
         element: <EditRecipe />,
+      },
+      {
+        path: "recipes/deleteRecipe/:recipeId",
+        loader: deleteRecipeLoader,
+        element: <DeleteRecipe />,
       },
     ],
   },
