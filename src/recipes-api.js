@@ -1,5 +1,5 @@
 import data from "./recipes.json";
-import { useNavigate } from "react-router";
+
 
 export function getAllRecipes() {
   return data;
@@ -43,8 +43,4 @@ export function deleteRecipeApi(id) {
   const deleteRecipeId = data.findIndex((recipe) => recipe.index === id);
   console.log(deleteRecipeId);
   data.splice(deleteRecipeId, 1);
-  let navigate = useNavigate();
-  navigate(
-    `recipes/` + Math.floor(Math.random() * data.length)
-  );
 }

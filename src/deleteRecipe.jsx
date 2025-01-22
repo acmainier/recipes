@@ -1,5 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Recipe from "./Recipe";
+import { useNavigate } from "react-router";
 import { getRecipe, deleteRecipeApi } from "./recipes-api";
 
 export function loader({ params }) {
@@ -9,14 +10,15 @@ export function loader({ params }) {
 
 export default function DeleteRecipe() {
   const { recipe } = useLoaderData();
+  let navigate = useNavigate();
+  const deletionConfirmation = () => {
+    window.confirm("Are you sure?") && deleteRecipeApi(recipe.index);
+    navigate(`/recipes/newRecipe`);
+  };
 
   return (
     <div>
-      <button
-        onClick={() => {
-          window.confirm("Are you sure?") && deleteRecipeApi(recipe.index);
-        }}
-      >
+      <button onClick={deletionConfirmation}>
         You want to delete this recipe?
       </button>
       <Recipe
