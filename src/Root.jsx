@@ -1,6 +1,7 @@
 import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { getAllRecipes, createRecipe } from "./recipes-api";
+//import { logo } from "./images/logo.png";
 
 export function loader() {
   return { recipes: getAllRecipes() };
@@ -18,8 +19,8 @@ export default function Root() {
     <>
       <div id="sidebar" className="top-menu">
       <img
-          className="menu-logo"
-          src="/images/menu-logo.png"
+          className="logo"
+          src="logo.png"
           alt="Menu logo to go back to default page"
         />
         
