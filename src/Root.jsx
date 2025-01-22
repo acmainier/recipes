@@ -17,7 +17,14 @@ export default function Root() {
   return (
     <>
       <div id="sidebar" className="top-menu">
+      <img
+          className="menu-logo"
+          src="/images/menu-logo.png"
+          alt="Menu logo to go back to default page"
+        />
+        
         <h1>My recipes</h1>
+        
         {
           <div className="container">
             <Form method="post">
