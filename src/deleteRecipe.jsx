@@ -13,7 +13,7 @@ export default function DeleteRecipe() {
   let navigate = useNavigate();
   const deletionConfirmation = () => {
     window.confirm("Are you sure?") && deleteRecipeApi(recipe.index);
-    navigate(`/recipes/newRecipe`);
+    navigate(`/recipes/defaultPage`);
   };
 
   return (
