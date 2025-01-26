@@ -58,6 +58,11 @@ a {
   color: #7146c1;
 }
 
+.logo {
+  width: 36px;
+  height: 41px;
+}
+
 .my-card {
   border: 1px solid #7146c1;
   /* border-radius: 10px;
