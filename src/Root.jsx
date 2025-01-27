@@ -17,6 +17,7 @@ export default function Root() {
   return (
     <>
       <div id="sidebar" className="top-menu">
+        <div className="header"> 
       <img
           className="logo"
           src="/logo.png"
@@ -24,6 +25,7 @@ export default function Root() {
         />
         
         <h1>My recipes</h1>
+        </div>
         
         {
           <div className="container">

@@ -58,6 +58,11 @@ a {
   color: #7146c1;
 }
 
+.header {
+  display: flex;
+  align-items: center;
+}
+
 .logo {
   width: 36px;
   height: 41px;
