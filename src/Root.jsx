@@ -17,16 +17,16 @@ export default function Root() {
   return (
     <>
       <div id="sidebar" className="top-menu">
-        <div className="header"> 
-      <img
-          className="logo"
-          src="/logo.png"
-          alt="Menu logo to go back to default page"
-        />
-        
-        <h1>My recipes</h1>
+        <div className="header">
+          <img
+            className="logo"
+            src="/logo.png"
+            alt="Menu logo to go back to default page"
+          />
+
+          <h1>My recipes</h1>
         </div>
-        
+
         {
           <div className="container">
             <Form method="post">
@@ -51,13 +51,15 @@ export default function Root() {
             </button>
           </div>
         }
-        <nav>
+
+        <nav className="nav-container">
           <ul>
             {recipes.map((item) => {
               return (
-                <li key={item.index}>
+                <li className="recipe-selection" key={item.index}>
                   <Link to={`recipes/` + item.index}>{item.title}</Link>
                   <button
+                    className="recipe-selection-btn"
                     type="button"
                     onClick={() => {
                       navigate(`recipes/editRecipe/` + item.index);
@@ -66,6 +68,7 @@ export default function Root() {
                     Edit?
                   </button>
                   <button
+                    className="recipe-selection-btn"
                     type="button"
                     onClick={() => {
                       navigate(`recipes/deleteRecipe/` + item.index);
@@ -79,6 +82,7 @@ export default function Root() {
           </ul>
         </nav>
       </div>
+
       <div id="detail">
         <Outlet />
       </div>

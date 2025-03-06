@@ -39,11 +39,33 @@ button {
   padding: 2px;
   background-color: #DB96F4;
   margin: 5px;
-  
 }
+
+li {
+  border-bottom: 1px solid #dee2e6;
+}
+
 .container {
   display: flex;
-  justify-content: flex-start;
+}
+
+.nav-container {
+  display: block;
+}
+
+.recipe-selection {
+  display: flex;
+  justify-content: space-between;
+  align-items:baseline;
+  gap: 10px 10px;
+}
+
+.recipe-selection a {
+  flex: 2 auto;
+}
+
+.recipe-selection-btn {
+
 }
 
 .top-menu {
