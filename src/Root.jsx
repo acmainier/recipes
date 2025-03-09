@@ -36,7 +36,7 @@ export default function Root() {
                   navigate(`recipes/newRecipe`);
                 }}
               >
-                New
+                New recipe
               </button>
             </Form>
             <button
@@ -65,7 +65,7 @@ export default function Root() {
                       navigate(`recipes/editRecipe/` + item.index);
                     }}
                   >
-                    Edit?
+                    Edit
                   </button>
                   <button
                     className="recipe-selection-btn"
@@ -74,7 +74,7 @@ export default function Root() {
                       navigate(`recipes/deleteRecipe/` + item.index);
                     }}
                   >
-                    Delete?
+                    Delete
                   </button>
                 </li>
               );
