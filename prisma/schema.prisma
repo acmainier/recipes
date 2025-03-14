@@ -12,7 +12,7 @@ datasource db {
 
 model Recipe {
   id          Int          @id @default(autoincrement())
-  name        String
+  name        String       @unique
   createdAt   DateTime
   steps       Step[]
   ingredients Ingredient[]
