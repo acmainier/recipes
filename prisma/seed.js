@@ -1,4 +1,4 @@
-import prisma from "../prisma/db-server.js";
+import prisma from "./prisma-client.js";
 
 async function main() {
   const carbonara = await prisma.recipe.upsert({

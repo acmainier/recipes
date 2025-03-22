@@ -1,13 +1,13 @@
-import prisma from "../prisma/db-server.js";
+import prisma from "../prisma/prisma-client.js";
 
 async function main() {
-  const recipe = await prisma.recipe.findMany({
+  const recipes = await prisma.recipe.findMany({
     include: {
       ingredients: true,
       steps: true,
     },
   });
-  console.log(recipe);
+  console.log(recipes);
 }
 
 main()
