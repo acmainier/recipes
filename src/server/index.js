@@ -57,7 +57,27 @@ app.post("/recipes/new", async (req, res) => {
 
 // DELETE recipe 1 from recipes/delete/1 in database in JSON
 
+app.delete("/recipes/delete/:id", async (req) => {
 
+const deleteIngredients = prisma.ingredient.deleteMany({
+    where: {
+      recipeId: parseInt(req.params.id, 10),   
+    }
+})
+
+const deleteSteps = prisma.step.deleteMany({
+    where: {
+      recipeId: parseInt(req.params.id, 10),   
+    }
+})
+
+const deleteRecipe = prisma.recipe.delete({
+    where: {
+id: parseInt(req.params.id, 10),
+    },
+})
+await prisma.$transaction([deleteIngredients, deleteSteps, deleteRecipe])
+})
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
