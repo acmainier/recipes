@@ -36,7 +36,7 @@ app.get("/recipes/:id", async (req, res) => {
 
 // POST new recipe from /recipes/new to database in JSON
 
-app.post("/recipes/new", async (req, res) => {
+app.post("/recipes/newRecipe", async (req, res) => {
   const newRecipe = await prisma.recipe.create({
     data: {
       name: req.body.name,
@@ -54,30 +54,92 @@ app.post("/recipes/new", async (req, res) => {
 
 // POST update recipe 1 from recipes/update/1 to database in JSON
 
+app.post("/recipes/editRecipe/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const ingredients = req.body.ingredients.map((ingredient) => {
+    return {
+      name: ingredient.name,
+      recipeId: id,
+    };
+  });
+  const steps = req.body.steps.map((step) => {
+    return {
+      name: step.name,
+      recipeId: id,
+    };
+  });
+
+  try {
+    const results = await prisma.$transaction([
+      prisma.ingredient.deleteMany({
+        where: {
+          recipeId: id,
+        },
+      }),
+      prisma.ingredient.createMany({
+        data: ingredients,
+      }),
+      prisma.step.deleteMany({
+        where: {
+          recipeId: id,
+        },
+      }),
+      prisma.step.createMany({
+        data: steps,
+      }),
+      prisma.recipe.update({
+        where: {
+          id,
+        },
+        data: {
+          name: req.body.name,
+        },
+        include: {
+          ingredients: true,
+          steps: true,
+        },
+      }),
+    ]);
+    res.json(results[4]);
+  } catch (e) {
+    console.log("something went wrong", e);
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+});
 
 // DELETE recipe 1 from recipes/delete/1 in database in JSON
 
-app.delete("/recipes/delete/:id", async (req) => {
-
-const deleteIngredients = prisma.ingredient.deleteMany({
+app.delete("/recipes/deleteRecipe/:id", async (req, res) => {
+  const deleteIngredients = prisma.ingredient.deleteMany({
     where: {
-      recipeId: parseInt(req.params.id, 10),   
-    }
-})
-
-const deleteSteps = prisma.step.deleteMany({
-    where: {
-      recipeId: parseInt(req.params.id, 10),   
-    }
-})
-
-const deleteRecipe = prisma.recipe.delete({
-    where: {
-id: parseInt(req.params.id, 10),
+      recipeId: parseInt(req.params.id, 10),
     },
-})
-await prisma.$transaction([deleteIngredients, deleteSteps, deleteRecipe])
-})
+  });
+
+  const deleteSteps = prisma.step.deleteMany({
+    where: {
+      recipeId: parseInt(req.params.id, 10),
+    },
+  });
+
+  const deleteRecipe = prisma.recipe.delete({
+    where: {
+      id: parseInt(req.params.id, 10),
+    },
+  });
+
+  try {
+    const transaction = await prisma.$transaction([
+      deleteIngredients,
+      deleteSteps,
+      deleteRecipe,
+    ]);
+    return transaction;
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Something went wrong" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
