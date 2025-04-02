@@ -1,9 +1,17 @@
 import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { getAllRecipes, createRecipe } from "./recipes-api";
+import { createRecipe } from "./recipes-api";
 
-export function loader() {
-  return { recipes: getAllRecipes() };
+// export function loader() {
+// return { recipes: getAllRecipes() };
+//}
+
+export async function loader() {
+  const response = await fetch("http://localhost:3000/recipes", {
+    method: "GET",
+  });
+  const allRecipes = await response.json();
+  return { allRecipes };
 }
 
 export async function action() {
@@ -12,7 +20,7 @@ export async function action() {
 }
 
 export default function Root() {
-  const { recipes } = useLoaderData();
+  const { allRecipes } = useLoaderData();
   let navigate = useNavigate();
   return (
     <>
@@ -33,7 +41,7 @@ export default function Root() {
               <button
                 type="button"
                 onClick={() => {
-                  navigate(`recipes/newRecipe`);
+                  navigate(`recipes/new`);
                 }}
               >
                 New recipe
@@ -42,9 +50,9 @@ export default function Root() {
             <button
               type="button"
               onClick={() => {
-                navigate(
-                  `recipes/` + Math.floor(Math.random() * recipes.length)
-                );
+                const randIndex = Math.floor(Math.random() * allRecipes.length);
+                const randId = allRecipes[randIndex].id;
+                navigate(`recipes/` + randId);
               }}
             >
               Random recipe?
@@ -54,15 +62,15 @@ export default function Root() {
 
         <nav className="nav-container">
           <ul>
-            {recipes.map((item) => {
+            {allRecipes.map((item) => {
               return (
-                <li className="recipe-selection" key={item.index}>
-                  <Link to={`recipes/` + item.index}>{item.title}</Link>
+                <li className="recipe-selection" key={item.id}>
+                  <Link to={`recipes/` + item.id}>{item.name}</Link>
                   <button
                     className="recipe-selection-btn"
                     type="button"
                     onClick={() => {
-                      navigate(`recipes/editRecipe/` + item.index);
+                      navigate(`recipes/update/` + item.id);
                     }}
                   >
                     Edit
@@ -71,7 +79,7 @@ export default function Root() {
                     className="recipe-selection-btn"
                     type="button"
                     onClick={() => {
-                      navigate(`recipes/deleteRecipe/` + item.index);
+                      navigate(`recipes/delete/` + item.id);
                     }}
                   >
                     Delete

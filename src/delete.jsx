@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { getRecipe, deleteRecipeApi } from "./recipes-api";
 
 export function loader({ params }) {
-  const recipe = getRecipe(params.recipeId);
+  const recipe = getRecipe(params.id);
   return { recipe };
 }
 

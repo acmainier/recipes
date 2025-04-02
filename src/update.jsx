@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import { getRecipe, editRecipe } from "./recipes-api";
 
 export function loader({ params }) {
-  const recipe = getRecipe(params.recipeId);
+  const recipe = getRecipe(params.id);
   return { recipe };
 }
 

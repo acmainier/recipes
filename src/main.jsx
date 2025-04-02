@@ -4,9 +4,9 @@ import Root, { loader as rootLoader, action as rootAction } from "./Root";
 import ErrorPage from "./error-page";
 import DefaultPage from "./default";
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
-import NewRecipe from "./newRecipe";
-import EditRecipe, { loader as editRecipeLoader } from "./editRecipe";
-import DeleteRecipe, { loader as deleteRecipeLoader } from "./deleteRecipe";
+import NewRecipe from "./new";
+import EditRecipe, { loader as editRecipeLoader } from "./update";
+import DeleteRecipe, { loader as deleteRecipeLoader } from "./delete";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter([
@@ -22,21 +22,21 @@ const router = createBrowserRouter([
         element: <DefaultPage />,
       },
       {
-        path: "/recipes/:recipeId",
+        path: "/recipes/:id",
         loader: recipeLoader,
         element: <RecipePage />,
       },
       {
-        path: "/recipes/newRecipe",
+        path: "/recipes/new",
         element: <NewRecipe />,
       },
       {
-        path: "/recipes/editRecipe/:recipeId",
+        path: "/recipes/update/:id",
         loader: editRecipeLoader,
         element: <EditRecipe />,
       },
       {
-        path: "recipes/deleteRecipe/:recipeId",
+        path: "recipes/delete/:id",
         loader: deleteRecipeLoader,
         element: <DeleteRecipe />,
       },
