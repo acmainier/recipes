@@ -1,6 +1,6 @@
 import { Outlet, Link, useLoaderData, Form } from "react-router-dom";
 import { useNavigate } from "react-router";
-import { createRecipe } from "./recipes-api";
+// import { createRecipe } from "./recipes-api";
 
 // export function loader() {
 // return { recipes: getAllRecipes() };
@@ -14,10 +14,11 @@ export async function loader() {
   return { allRecipes };
 }
 
-export async function action() {
-  const recipe = await createRecipe();
-  return { recipe };
-}
+export async function action(...args) {
+  console.log('action', ...args);
+  // const recipe = await createRecipe();
+  // return { recipe };
+ }
 
 export default function Root() {
   const { allRecipes } = useLoaderData();

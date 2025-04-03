@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { createRecipe } from "./recipes-api";
 
 export default function NewRecipe() {
   const [inputIngredients, setInputIngredients] = useState([{ name: "" }]);
@@ -8,31 +7,36 @@ export default function NewRecipe() {
 
   let navigate = useNavigate();
 
-  function addRecipe(formData) {
+  async function addRecipe(formData) {
     const formName = formData.get("recipeName");
     const formIngredients = formData.getAll("recipeIngredient");
     const formIngredientsComplete = formIngredients
       .filter((ingredient) => ingredient.length >= 1)
-      .map((ingredient, id) => ({
-        id: (id + 1) * 100,
+      .map((ingredient) => ({
         name: ingredient,
       }));
     const formSteps = formData.getAll("recipeStep");
     const formStepsComplete = formSteps
       .filter((step) => step.length >= 1)
-      .map((step, id) => ({
-        id: (id + 1) * 100,
+      .map((step) => ({
         name: step,
       }));
 
-    console.log(formName, formIngredientsComplete, formStepsComplete);
-    const id = createRecipe(
-      formName,
-      formIngredientsComplete,
-      formStepsComplete
-    );
-
-    navigate(`/recipes/` + id);
+    const response = await fetch("http://localhost:3000/recipes/new", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        name: formName,
+        ingredients: formIngredientsComplete,
+        steps: formStepsComplete,
+      }),
+    });
+    if (response.ok) {
+      const id = await response.json();
+      navigate(`/recipes/` + id);
+    } else {
+      alert("Something went wrong");
+    }
   }
 
   const addIngredient = () => {

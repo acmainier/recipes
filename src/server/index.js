@@ -13,12 +13,6 @@ const port = 3000;
 // curl --request GET "http://localhost:3000/recipes"
 // curl "http://localhost:3000/recipes"
 
-// const response = await fetch('http://localhost:3000/recipes', {
-//     method: "GET"
-//   });
-// const data = await response.json();
-
-
 app.get("/recipes", async (req, res) => {
   const recipes = await prisma.recipe.findMany({
     include: {
@@ -50,19 +44,24 @@ app.get("/recipes/:id", async (req, res) => {
 // curl --request POST --data '{ "name":"boubinounette","ingredients": [{"name":"moukren"}],"steps":[{"name":"mets le truc"}]}' --header "Content-type: application/json" "http://localhost:3000/recipes/new"
 
 app.post("/recipes/new", async (req, res) => {
-  const newRecipe = await prisma.recipe.create({
-    data: {
-      name: req.body.name,
-      createdAt: new Date(),
-      ingredients: {
-        create: req.body.ingredients,
+  try {
+    const newRecipe = await prisma.recipe.create({
+      data: {
+        name: req.body.name,
+        createdAt: new Date(),
+        ingredients: {
+          create: req.body.ingredients,
+        },
+        steps: {
+          create: req.body.steps,
+        },
       },
-      steps: {
-        create: req.body.steps,
-      },
-    },
-  });
-  res.json(newRecipe.id);
+    });
+    res.json(newRecipe.id);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ message: "Panic!" });
+  }
 });
 
 // POST update recipe 1 from recipes/update/1 to database in JSON
