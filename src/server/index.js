@@ -144,7 +144,7 @@ app.post("/recipes/update/:id", async (req, res) => {
 // DELETE recipe 1 from recipes/delete/1 in database in JSON
 // curl --request DELETE "http://localhost:3000/recipes/1"
 
-app.delete("/recipes/deleteRecipe/:id", async (req, res) => {
+app.delete("/recipes/delete/:id", async (req, res) => {
   const deleteIngredients = prisma.ingredient.deleteMany({
     where: {
       recipeId: parseInt(req.params.id, 10),
@@ -169,6 +169,7 @@ app.delete("/recipes/deleteRecipe/:id", async (req, res) => {
       deleteSteps,
       deleteRecipe,
     ]);
+    res.json(req.params.id);
     return transaction;
   } catch (e) {
     console.log(e);

@@ -27,13 +27,14 @@ export default function Root() {
     <>
       <div id="sidebar" className="top-menu">
         <div className="header">
+          <a href="/recipes/defaultPage">
           <img
             className="logo"
             src="/logo.png"
             alt="Menu logo to go back to default page"
           />
 
-          <h1>My recipes</h1>
+          <h1>My recipes</h1></a>
         </div>
 
         {
