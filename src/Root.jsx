@@ -15,26 +15,29 @@ export async function loader() {
 }
 
 export async function action(...args) {
-  console.log('action', ...args);
+  console.log("action", ...args);
   // const recipe = await createRecipe();
   // return { recipe };
- }
+}
 
 export default function Root() {
   const { allRecipes } = useLoaderData();
   let navigate = useNavigate();
+
   return (
     <>
       <div id="sidebar" className="top-menu">
         <div className="header">
           <a href="/recipes/defaultPage">
-          <img
-            className="logo"
-            src="/logo.png"
-            alt="Menu logo to go back to default page"
-          />
-
-          <h1>My recipes</h1></a>
+            <img
+              className="logo"
+              src="/logo.png"
+              alt="Menu logo to go back to default page"
+            />
+          </a>
+          <a href="/recipes/defaultPage">
+            <h1>My recipes</h1>
+          </a>
         </div>
 
         {

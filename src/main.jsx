@@ -4,7 +4,7 @@ import Root, { loader as rootLoader, action as rootAction } from "./Root";
 import ErrorPage from "./error-page";
 import DefaultPage from "./default";
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
-import NewRecipe from "./new";
+import NewRecipe, { addRecipeAction } from "./new";
 import EditRecipe, { loader as editRecipeLoader } from "./update";
 import DeleteRecipe, { loader as deleteRecipeLoader } from "./delete";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -15,7 +15,6 @@ const router = createBrowserRouter([
     loader: rootLoader,
     element: <Root />,
     errorElement: <ErrorPage />,
-    action: rootAction,
     children: [
       {
         path: "/recipes/defaultPage",
@@ -29,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/recipes/new",
         element: <NewRecipe />,
+        action: async ({ request }) => {
+          const formData = await request.formData();
+          return addRecipeAction(formData);
+        },
       },
       {
         path: "/recipes/update/:id",

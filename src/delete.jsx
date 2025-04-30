@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Recipe from "./Recipe";
-import { useNavigate } from "react-router";
+import { useNavigate, useRevalidator } from "react-router";
 //import { getRecipe, deleteRecipeApi } from "./recipes-api";
 
 //export function loader({ params }) {
@@ -29,6 +29,7 @@ export default function DeleteRecipe() {
   const deletingRecipe = useLoaderData();
   console.log(deletingRecipe.recipe.id);
   let navigate = useNavigate();
+  const revalidator = useRevalidator();
 
   async function deletion() {
     const response = await fetch(
@@ -38,9 +39,9 @@ export default function DeleteRecipe() {
         headers: { "content-type": "application/json" },
       }
     );
-    await response.json();
     if (response.ok) {
       window.confirm("All done!");
+      revalidator.revalidate();
       navigate(`/recipes/defaultPage`);
     } else {
       alert("Something went wrong here");

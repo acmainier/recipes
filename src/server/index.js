@@ -169,7 +169,7 @@ app.delete("/recipes/delete/:id", async (req, res) => {
       deleteSteps,
       deleteRecipe,
     ]);
-    res.json(req.params.id);
+    res.status(204).send();
     return transaction;
   } catch (e) {
     console.log(e);
