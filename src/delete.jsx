@@ -1,33 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import Recipe from "./Recipe";
 import { useNavigate, useRevalidator } from "react-router";
-//import { getRecipe, deleteRecipeApi } from "./recipes-api";
-
-//export function loader({ params }) {
-//  const recipe = getRecipe(params.id);
-//  return { recipe };
-//}
 
 export async function loader({ params }) {
   const response = await fetch(`http://localhost:3000/recipes/${params.id}`, {
     method: "GET",
   });
   const recipe = await response.json();
-  console.log(recipe);
   return { recipe };
 }
 
-//export default function DeleteRecipe() {
-//  const { recipe } = useLoaderData();
-//  let navigate = useNavigate();
-//  const deletionConfirmation = () => {
-//    window.confirm("Are you sure?") && deleteRecipeApi(recipe.id);
-//    navigate(`/recipes/defaultPage`);
-//  };
-
 export default function DeleteRecipe() {
   const deletingRecipe = useLoaderData();
-  console.log(deletingRecipe.recipe.id);
   let navigate = useNavigate();
   const revalidator = useRevalidator();
 

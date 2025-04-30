@@ -14,11 +14,11 @@ export async function loader() {
   return { allRecipes };
 }
 
-export async function action(...args) {
+/* export async function action(...args) {
   console.log("action", ...args);
-  // const recipe = await createRecipe();
-  // return { recipe };
-}
+  const recipe = await createRecipe();
+  return { recipe };
+} */
 
 export default function Root() {
   const { allRecipes } = useLoaderData();

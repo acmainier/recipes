@@ -1,10 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import Root, { loader as rootLoader, action as rootAction } from "./Root";
+import Root, { loader as rootLoader } from "./Root";
 import ErrorPage from "./error-page";
 import DefaultPage from "./default";
 import RecipePage, { loader as recipeLoader } from "./RecipePage";
-import NewRecipe, { addRecipeAction } from "./new";
+import NewRecipe from "./new";
 import EditRecipe, { loader as editRecipeLoader } from "./update";
 import DeleteRecipe, { loader as deleteRecipeLoader } from "./delete";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -28,10 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/recipes/new",
         element: <NewRecipe />,
-        action: async ({ request }) => {
+       /*  action: async ({ request }) => {
           const formData = await request.formData();
           return addRecipeAction(formData);
-        },
+        }, */
       },
       {
         path: "/recipes/update/:id",
