@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useRevalidator } from "react-router";
 import { useLoaderData } from "react-router-dom";
-import { getRecipe, editRecipe } from "./recipes-api";
 
-export function loader({ params }) {
-  const recipe = getRecipe(params.id);
+export async function loader({ params }) {
+  const response = await fetch(`http://localhost:3000/recipes/${params.id}`, {
+    method: "GET",
+  });
+  const recipe = await response.json();
   return { recipe };
 }
 
@@ -14,6 +16,8 @@ export default function EditRecipe() {
   const stepsList = recipe.steps;
   const [extraIngredients, setExtraIngredients] = useState([{ name: "" }]);
   const [extraSteps, setExtraSteps] = useState([{ name: "" }]);
+
+  const revalidator = useRevalidator();
   let navigate = useNavigate();
 
   const addIngredient = () => {
@@ -25,7 +29,7 @@ export default function EditRecipe() {
     setExtraSteps([...extraSteps, newStep]);
   };
 
-  function _editRecipe(formData) {
+  async function editingRecipe(formData) {
     const editedName = formData.get("recipeName");
     const editedIngredients = formData.getAll("recipeIngredient");
     const editedIngredientsComplete = editedIngredients
@@ -43,25 +47,37 @@ export default function EditRecipe() {
       }));
     console.log(editedName, editedIngredientsComplete, editedStepsComplete);
 
-    editRecipe(
-      recipe.index,
-      editedName,
-      editedIngredientsComplete,
-      editedStepsComplete
+    const response = await fetch(
+      `http://localhost:3000/recipes/update/${recipe.id}`,
+      {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          name: editedName,
+          ingredients: editedIngredientsComplete,
+          steps: editedStepsComplete,
+        }),
+      }
     );
 
-    navigate(`/recipes/` + recipe.index);
+    if (response.ok) {
+      const id = await response.json();
+      revalidator.revalidate();
+      navigate(`/recipes/` + id);
+    } else {
+      alert("That didn't go so well");
+    }
   }
 
   return (
     <div key={recipe.index}>
-      <form id="editRecipeForm" action={_editRecipe}>
+      <form id="editRecipeForm" action={editingRecipe}>
         <label htmlFor="recipeName">Recipe name</label>
         <input
           type="text"
           name="recipeName"
           id="recipeName"
-          defaultValue={recipe.title}
+          defaultValue={recipe.name}
         />
         <br />
         <label htmlFor="recipeIngredient">Ingredients</label>

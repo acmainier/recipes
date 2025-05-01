@@ -134,7 +134,7 @@ app.post("/recipes/update/:id", async (req, res) => {
       },
     });
 
-    res.json(recipe);
+    res.json(recipe.id);
   } catch (e) {
     console.log("something went wrong", e);
     return res.status(500).json({ message: "Something went wrong" });
